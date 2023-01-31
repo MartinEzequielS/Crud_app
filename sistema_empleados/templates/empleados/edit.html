@@ -1,0 +1,21 @@
+{% extends 'empleados/layout.html' %}
+{% block body %}
+
+<body>
+    <div style=" background-color:lightgray ; display:flex; justify-content: center; padding:20px">
+    <form action="/edit/{{data.0}}" method="POST" >
+        Nombre:
+        <input type="text" name="txtnombre" id="txtnombre" value="{{data.1}}">
+        Email:
+        <input type="email" name="txtnmail" id="txtnmail" value="{{data.2}}">
+        File:
+        <input type="file" name="txtfile" id="txtfile" value="{{data.3}}">
+        <button type="submit" >Editar</button>
+    
+    </form>
+    </div>
+</body>
+
+
+
+{% endblock %}

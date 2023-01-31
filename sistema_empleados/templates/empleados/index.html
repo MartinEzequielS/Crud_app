@@ -1,0 +1,69 @@
+{% extends 'empleados/layout.html' %}
+{% block body %}
+
+<body>
+
+    <!--!message-->
+    {% with messages= get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif%}
+    {% endwith %}
+    <div class="container" style="padding:20px">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for empleado in empleados %}
+
+                <tr>
+                    <td>{{empleado.0}}</td>
+                    <td>{{empleado.1}}</td>
+                    <td>{{empleado.2}}</td>
+                    <td><img src="uploads/{{empleado.3}}" alt="user" height="80px" width="80px"></td>
+                    <td>
+                        <a href="get_user/{{empleado.0}}" class="btn btn-secondary">Edit</a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Delete
+                        </button>
+                </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Estas Seguro que deseas eliminar el registro?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="delete/{{empleado.0}}" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+{% endblock %}
